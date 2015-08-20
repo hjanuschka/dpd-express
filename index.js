@@ -9,7 +9,7 @@ function Express(name, options) {
     , exp = this;
   
   // handle all routes
-  this.path = '/';
+
   this.name=name;
   
   app.set('views', path.join(path.resolve('.'), options.configPath, 'views'));
@@ -22,8 +22,10 @@ module.exports = Express;
 
 Express.prototype.handle = function (ctx, next) {
 
-  if (ctx.url.indexOf('/' + this.name) === 0) {
+  console.log("AAAA " + ctx.url);
+  //if (ctx.url.indexOf('/' + this.name) === 0) {
       var e = this;
+
       if(e.events && e.events.init) {
         
         var domain = {
@@ -46,10 +48,8 @@ Express.prototype.handle = function (ctx, next) {
     if(ctx.res._finished) {
       next();
     }
-  } else {
-    Resource.prototype.handle.apply(this, arguments);
-  }
+  //} else {
+  //  Resource.prototype.handle.apply(this, arguments);
+    //next();
+  //}
 }
-
-
-
